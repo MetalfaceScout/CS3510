@@ -21,7 +21,7 @@ target state (x, y) or return ”unreachable """
     while len(queue) > 0:
         current_node = queue.pop()
         graph.update({current_node : []})
-        if current_node == target_volume:
+        if current_node[0] == target_volume or current_node[1] == target_volume:
             path = generate_path(graph, current_node)
             path.reverse()
             path.append(current_node)
@@ -31,7 +31,7 @@ target state (x, y) or return ”unreachable """
                 graph[current_node].append(edge)
                 discovered.append(edge)
                 queue.append(edge)
-    return []
+    return "Unreachable"
 
 
 def generate_path(graph, target_node):
@@ -71,4 +71,6 @@ def generate_nodes(size_container_A, size_container_B, current_node):
     return node_list
 
 if __name__ == "__main__":
-    print(reach_target_volume(5, 3, (4,0)))
+    print(reach_target_volume(6, 4, 1))
+
+    print(reach_target_volume(11, 5, 8))
